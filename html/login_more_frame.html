@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+		html {
+			height: 100%;background:transparent;
+		}
+		body {
+			background: rgba(0,0,0,0.2);
+			width: 100%; height: 100%;
+		}
+		.floatbox {
+			position: absolute; 
+			text-align: center; 
+			background: #fff; 
+			bottom: 0;
+			width: 100%;
+			border-radius: 10px 10px 0 0;
+		}
+		.floatheader {
+			height: 40px; line-height: 40px; 
+			font-size: 14px; color: #999; text-align: center;
+		}
+		.floatheader img {
+			width: 40px;
+		}
+		.floatbody {
+			border-bottom: 1px solid #D0D2D6;
+		}
+
+		.thirdcompy .left {
+			margin-right: 20px;
+		}
+		.thirdcompy .left, .thirdcompy .right {
+			width: 40%; 
+			display: inline-block;
+			background: #fff;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			vertical-align: top;
+			text-align: left; font-size: 18px;
+		}
+		.thirdcompy .left img, .thirdcompy .right img {
+			width: 30px; height: 30px;
+			float: left; margin: 5px 10px;
+		}
+		.thirdcompy span {
+			line-height: 40px; color: #666;
+		}
+		.thirdcompy {
+			margin-bottom: 50px;
+		}
+    </style>
+</head>
+<body>
+    <div class="floatbox">
+		<div class="floatheader" tapmode onclick="api.closeFrame();">
+			<img src="../image/login_arrow_down.png" class="clapse">
+		</div>
+		<div class="floatbody">
+			<div class="thirdcompy">
+				<div class="left">
+					<img src="../image/login_ico_weibo.png">
+					<span>新浪微博</span>
+				</div>
+				<div class="right">
+					<img src="../image/login_ico_zhifubo.png" id="qqpic">
+					<span>支付宝</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+    };
+</script>
+</html>

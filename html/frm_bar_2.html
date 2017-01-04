@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<style>
+			body {
+			}
+		</style>
+	</head>
+	<body>
+		你的位置:<span id="current_location"></span>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript">
+		var map;
+		apiready = function() {
+			map = api.require('bMap');
+			openBaiduMap();
+			getCurrentLocation();
+			map.showUserLocation({
+				isShow : true,
+				trackingMode : 'none'
+			});
+			addAnnotations();
+		};
+		function getCurrentLocation() {
+			map.getLocation({
+				accuracy : '100m',
+				autoStop : true,
+				filter : 1
+			}, function(ret1, err1) {
+				if (ret1.status) {
+					map.getNameFromCoords({
+						lon : ret1.lon,
+						lat : ret1.lat
+					}, function(ret2, err2) {
+						if (ret2.status) {
+							$api.byId('current_location').innerHTML = ret2.address;
+						}
+					});
+				} else {
+					alert(err1.code);
+				}
+			});
+		}
+
+		function openBaiduMap() {
+			map.open({
+				rect : {
+					x : 0,
+					y : 20,
+					w : 'auto',
+					h : 'auto'
+				},
+				center : {
+					lon : 116.4021310000,
+					lat : 39.9994480000
+				},
+				zoomLevel : 10,
+				showUserLocation : true,
+				fixedOn : api.frameName,
+				fixed : true
+			}, function(ret) {
+			});
+		}
+
+		function addAnnotations() {
+			api.ajax({
+				url : 'http://sh.0713mhw.com/index.php/Api/Index/index',
+				method : 'post',
+				data : {
+					values : {
+						shop_id : 1
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+										api.alert({
+											msg : JSON.stringify(ret)
+										});
+					for (var i = 0; i <= ret.length-1; i++) {
+						map.addAnnotations({
+							annotations : [{
+								id : ret[i].shop_id,
+								lon : ret[i].lng,
+								lat : ret[i].lat
+							}],
+							icon : 'widget://res/map80.png',
+							draggable : true
+						}, function(ret) {
+							if (ret) {
+								alert(ret.id);
+							}
+						});
+					}
+				} else {
+					api.alert({
+						msg : JSON.stringify(err)
+					});
+				}
+			});
+		}
+	</script>
+</html>

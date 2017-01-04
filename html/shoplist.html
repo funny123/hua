@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    header {
+        background: #FCFCFC; height:50px; 
+        border-bottom: 1px solid #DDDFE3;
+    }
+    .back {
+        position: absolute; left: 0px; bottom: 0px;
+        width: 50px; height: 50px;
+        background: url(../image/header/back.png) center center no-repeat;
+        background-size: 15px auto;
+    }
+    .switch {
+        position: absolute; left: 90px; right: 90px; bottom: 10px;
+        background-color: #fcfcfc;
+        height: 30px; line-height: 30px;
+        border-radius: 4px; 
+        color: #fff; text-align: center; 
+        border: 1px solid #f63;
+    }
+    .switch div {
+        width: 50%; 
+        display: inline-block; 
+        color: #FF6633;
+    }
+    .switch div:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+    .switch div:last-child {
+        border-radius: 0px 4px 4px 0px;
+    }
+    .switch-act {
+        background-color: #FF6633;color: #fff !important;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="back" tapmode onclick="api.closeWin();"></div>
+        <div class="switch">
+            <div id="left" tapmode="switch-act" onclick="fnOpenLeftFrame();">商户</div><div id="right" tapmode="switch-act" onclick="fnOpenRightFrame()">团购</div>
+        </div>
+    </header>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    function fnOpenLeftFrame () {
+        $api.addCls($api.byId('left'), 'switch-act');
+        $api.removeCls($api.byId('right'), 'switch-act');
+        api.setFrameAttr({
+            name: 'groupbuylist_frame',
+            hidden: true
+        });
+        api.openFrame({
+            name: 'shoplist_frame',
+            url: 'shoplist_frame.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: 'auto'
+            }
+        });
+    }
+    function fnOpenRightFrame () {
+        $api.addCls($api.byId('right'), 'switch-act');
+        $api.removeCls($api.byId('left'), 'switch-act');        
+        api.setFrameAttr({
+            name: 'shoplist_frame',
+            hidden: true
+        });
+        api.openFrame({
+            name: 'groupbuylist_frame',
+            url: 'groupbuylist_frame.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: 'auto'
+            }
+        });
+    }
+    var headerH;
+    apiready = function(){
+        var header = $api.dom('header');
+        $api.fixIos7Bar(header);
+        headerH = $api.offset(header).h;
+        fnOpenLeftFrame();
+    };
+</script>
+</html>

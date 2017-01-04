@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-slide.css" />
+		<style>
+			body {
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="slide">
+				<div id="aui-slide">
+					<div class="aui-slide-wrap" >
+						<div class="aui-slide-node">
+							<div class="aui-grid">
+								<div class="aui-row">
+									<div class="aui-col-xs-4">
+										<div class="aui-badge">
+											88
+										</div>
+										<i class="aui-iconfont aui-icon-home"></i>
+										<div class="aui-grid-label">
+											首页
+										</div>
+									</div>
+									<div class="aui-col-xs-4">
+										<i class="aui-iconfont aui-icon-gear"></i>
+										<div class="aui-grid-label">
+											设置
+										</div>
+									</div>
+									<div class="aui-col-xs-4">
+										<i class="aui-iconfont aui-icon-map"></i>
+										<div class="aui-grid-label">
+											地图
+										</div>
+									</div>
+									<div class="aui-col-xs-4">
+										<i class="aui-iconfont aui-icon-calendar"></i>
+										<div class="aui-grid-label">
+											日历
+										</div>
+									</div>
+									<div class="aui-col-xs-4">
+										<div class="aui-badge"></div>
+										<i class="aui-iconfont aui-icon-date"></i>
+										<div class="aui-grid-label">
+											日期
+										</div>
+									</div>
+									<div class="aui-col-xs-4">
+										<div class="aui-dot"></div>
+										<i class="aui-iconfont aui-icon-cart"></i>
+										<div class="aui-grid-label">
+											购物车
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+							<div class="aui-content-padded">
+								<span class="aui-text-danger">AUI Slide</span> 轮播组件不只局限于放置图片，可以自定义内容，分页样式有圆点(dot)，线条(line),结合AUI Flex来实现图片及内容的水平、垂直居中
+							</div>
+						</div>
+						<div class="aui-slide-node aui-bg-warning aui-slide-node-middle aui-slide-node-center">
+							<div class="aui-content-padded">
+								<span class="aui-text-danger">AUI Slide</span>提供了常用的配置属性，可以自定义宽度，高度，自动播放，分页器样式等，支持无缝循环轮播
+							</div>
+						</div>
+						<div class="aui-slide-node bg-dark">
+							<img src="../image/l1.png" />
+						</div>
+						<div class="aui-slide-node bg-dark">
+							<img src="../image/l2.png" />
+						</div>
+						<div class="aui-slide-node bg-dark">
+							<img src="../image/l3.png" />
+						</div>
+					</div>
+					<div class="aui-slide-page-wrap">
+						<!--分页容器-->
+					</div>
+				</div>
+			</div>
+			<div id="main">
+				<div class="aui-content aui-margin-b-15">
+					<ul class="aui-list aui-media-list" id="list">
+						<li class="aui-list-header">
+							附近花店
+						</li>
+						<!--<li class="aui-list-item">
+						<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media">
+						<img src="../image/demo1.png">
+						</div>
+						<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+						<div class="aui-list-item-title">
+						带有媒体的列表二
+						</div>
+						<div class="aui-list-item-right">
+						08:00
+						</div>
+						</div>
+						<div class="aui-list-item-text">
+						这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+						</div>
+						<div class="aui-info aui-margin-t-5" style="padding:0">
+						<div class="aui-info-item">
+						<img src="../image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+						</div>
+						<div class="aui-info-item">
+						2015-07-14 10:31
+						</div>
+						</div>
+						</div>
+						</div>
+						</li>
+						<li class="aui-list-item">
+						<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+						媒体项右侧显示
+						</div>
+						<div class="aui-list-item-text">
+						这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+						</div>
+						</div>
+						<div class="aui-list-item-media">
+						<img src="../image/demo4.png">
+						</div>
+						</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/aui-slide.js"></script>
+	<script type="text/javascript">
+		var slide = new auiSlide({
+			container : document.getElementById("aui-slide"),
+			// "width":300,
+			"height" : 260,
+			"speed" : 300,
+			"pageShow" : true,
+			"pageStyle" : 'dot',
+			"loop" : true,
+			'dotPosition' : 'center',
+			currentPage : currentFun
+		})
+		function currentFun(index) {
+			console.log(index);
+		}
+	</script>
+	<script type="text/javascript">
+		apiready = function() {
+			//调用数据
+			api.ajax({
+				url : 'http://sh.0713mhw.com/index.php/Api/Index/getShopInfo',
+				method : 'post',
+				data : {
+					values : {
+						uuid : api.deviceId
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+//					api.alert({
+//						msg : JSON.stringify(ret)
+//					});
+					for (var i = 0; i <= ret.length - 1; i++) {
+						var html = '<li class="aui-list-item">';
+						html = html + '<div class="aui-media-list-item-inner">';
+						html = html + '<div class="aui-list-item-media">';
+						html = html + '<img src= "http://sh.0713mhw.com/attachs/2016/11/07/thumb_582022f732190.jpg">';
+						html = html + '</div>';
+						html = html + '<div class="aui-list-item-inner">';
+						html = html + '<div class="aui-list-item-text">';
+						html = html + '<div class="aui-list-item-title">';
+						html = html + ret[i].shop_name;
+						html = html + '</div>';
+						//						html = html + '<div class="aui-list-item-right">08:00</div>';
+						html = html + '</div>';
+						html = html + '<div class="aui-list-item-text">在下方我们加入了aui-info信息条</div>';
+						html = html + '</div>';
+						html = html + '</div>';
+						html = html + '<div class="aui-info" style="padding-top:0">';
+						html = html + '<div class="aui-info-item">';
+						html = html + '<img src="" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>';
+						html = html + '</div>';
+						html = html + '<div class="aui-info-item">';
+						html = html + '2015-07-14 10:31';
+						html = html + '</div>';
+						html = html + '</div>';
+						html = html + '</li>';
+						$api.append($api.byId('list'), html);
+					}
+				} else {
+					api.alert({
+						msg : JSON.stringify(err)
+					});
+				}
+			});
+		};
+	</script>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style type="text/css">
+    </style>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var welcomeShowed = $api.getStorage('welcomeShowed');
+        if (welcomeShowed) {
+            api.openWin({
+                name: 'main',
+                url: './html/main.html',
+                bounces: false,
+                pageParam: {key : ''},
+                animation: {
+                    type: 'none'
+                }
+            });
+        } else {
+            api.openFrameGroup({
+                name: 'welcomeFrames',
+                scrollEnabled: true,
+                rect: {
+                    x:0,
+                    y:0,    
+                    w:'auto',
+                    h:'auto'
+                },
+                index: 0,
+                frames: [{
+                    name: 'welcome_frame_1', 
+                    url: './html/welcome_frame_1.html',
+                    bgColor: './image/welcome/1.png',
+                    bounces: false,
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false
+                },{
+                    name: 'welcome_frame_2', 
+                    url: './html/welcome_frame_2.html',
+                    bgColor: './image/welcome/2.png',
+                    bounces: false,
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false
+                },{
+                    name: 'welcome_frame_3', 
+                    url: './html/welcome_frame_3.html',
+                    bgColor: './image/welcome/3.png',
+                    bounces: false,
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false
+                },{
+                    name: 'welcome_frame_4', 
+                    url: './html/welcome_frame_4.html',
+                    bgColor: './image/welcome/4.png',
+                    bounces: false,
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false
+                }]
+            }, function(ret, err){
+               var name  = ret.name;
+               var index = ret.index;
+            });  
+            $api.setStorage('welcomeShowed', '1');      
+        }
+
+        fnOpenDB();
+    };
+    
+    function fnSetPushListener(){
+        var push = api.require('push');
+        push.setListener(function(ret,err){
+            if(ret.data){ 
+                fnSaveMessagesToDB(ret.data); 
+                api.sendEvent({
+                    name: 'onMessage'
+                });
+            }
+        });
+    };
+
+    //打开数据库并建立消息表
+    var db, dbName = 'o2o_db', tableName = 'o2o_tblMessage';
+    function fnOpenDB(){
+        db = api.require('db');
+        db.openDatabase({
+            name: dbName
+        },function(ret,err){
+            db.executeSql({
+                name: dbName,
+                sql: 'CREATE TABLE ' + tableName + '(type int, msg varchar, receiveTime varchar)'
+            });
+
+            fnSetPushListener();
+        });
+    };
+
+    //将收到的推送消息保存到本地数据库
+    function fnSaveMessagesToDB(msgArr){
+        for(var i=0; i<msgArr.length; i++){ 
+            var date = new Date(),
+            receiveTime = date.getHours() + '点' + date.getMinutes() + '分';
+            var msg = $api.strToJson(msgArr[i]);
+            db.executeSql({ 
+                name: dbName, 
+                sql: 'INSERT INTO ' + tableName + '(type, msg, receiveTime) VALUES(' + msg.type + ',"' + msg.msg + '", "' + receiveTime + '")'
+            }); 
+        }
+    };
+</script>
+</html>
